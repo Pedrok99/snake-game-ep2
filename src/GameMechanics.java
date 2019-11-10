@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -8,9 +9,10 @@ import java.util.LinkedList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class GameMechanics extends JLabel implements Runnable, KeyListener {
+public class GameMechanics extends JPanel implements Runnable, KeyListener {
 
 	private JFrame display = new JFrame();
 	private Thread thread = new Thread(this);
@@ -23,38 +25,50 @@ public class GameMechanics extends JLabel implements Runnable, KeyListener {
 	private Point lastp = new Point();
 	private ImageIcon img = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\GAMEOVER.png");
 
+	private BombApple bomba = new BombApple();
+	private BigApple big = new BigApple();
+	private DecreaseApple Decrease = new DecreaseApple();
+	private SpecialSpawner spawner = new SpecialSpawner(bomba, big, Decrease);// -------------
+
 	public GameMechanics() {
 		cfgDisplay();
 		setSize(300, 300);
 		setLocation(0, 0);
 		setLayout(null);
 		setVisible(true);
-		display.addKeyListener(this);
-		display.add(this);
-		display.add(end);
-		display.add(S1);
-		display.add(A1);
+		setBackground(Color.lightGray);
+		add(S1);
+		add(A1);
+
+		add(bomba);// -------------
+		add(big);
+		add(Decrease);
+		
 		Pontos.addLast(new Point(20, 30));
 		Pontos.addLast(new Point(10, 30));
 		Pontos.addLast(new Point(0, 30));
 		thread.start();
+
 	}
 
 	public void cfgDisplay() {
 		display.setTitle("SnakeGame");
-		display.setResizable(false);
-		display.setSize(300, 300);
 		display.setMinimumSize(new Dimension(300, 300));
+		display.setSize(new Dimension(300, 300));
+		display.setResizable(false);
 		display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		display.setLayout(null);
 		display.setVisible(true);
+		display.addKeyListener(this);
+		display.add(this);
+		display.add(end);
 		display.setLocationRelativeTo(null);
 		end.setSize(300, 300);
 		end.setLocation(0, 0);
 		end.setLayout(null);
 		end.setVisible(false);
 		end.setIcon(img);
-		
+
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -93,23 +107,31 @@ public class GameMechanics extends JLabel implements Runnable, KeyListener {
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {}
+	public void keyReleased(KeyEvent arg0) {
+	}
+
 	@Override
-	public void keyTyped(KeyEvent arg0) {}
+	public void keyTyped(KeyEvent arg0) {
+	}
+
 	@Override
 	public void run() {
 
 		while (isRunning) {
 			lastp.setLocation(S1.getLocation());
-			A1.checkApple(A1, Pontos);
-			isRunning = S1.MoveAndCheck(S1, Xspeed, Yspeed, Pontos);	
-			if (!isRunning ) {
-				end.setVisible(true);
-				remove(A1);
-				remove(S1);
-				setVisible(false);
+			isRunning = S1.MoveAndCheck(S1, Xspeed, Yspeed, Pontos); // define as proximas cords da cobra
+
+			if (!isRunning) {
 				break;
 			}
+			isRunning = bomba.collision(S1);
+			if (!isRunning) {
+				break;
+			}
+			spawner.generateSpecial();// -------------
+			bomba.collision(S1);
+			big.collision(S1, Pontos);
+			Decrease.collision(S1, Pontos);
 			S1.AppleCollision(S1, A1, Pontos);
 			repaint();
 			try {
@@ -119,6 +141,7 @@ public class GameMechanics extends JLabel implements Runnable, KeyListener {
 				e.printStackTrace();
 			}
 		}
+	//	endscreen();
 	}
 
 	@Override
@@ -131,6 +154,11 @@ public class GameMechanics extends JLabel implements Runnable, KeyListener {
 
 		}
 
+	}
+
+	public void endscreen() {
+		setVisible(false);
+		end.setVisible(true);
 	}
 
 }
