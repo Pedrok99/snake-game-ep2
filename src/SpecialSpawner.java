@@ -42,6 +42,7 @@ public class SpecialSpawner {
 				//todas as bombas serao mudadas para a pos
 				bomb.setLocation(pos);
 				Big.setLocation(pos);
+				decrease.setLocation(pos);
 				
 				spawned=false;
 				i=0;
