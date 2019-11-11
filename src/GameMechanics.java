@@ -5,8 +5,8 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,14 +17,22 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener {
 	private JFrame display = new JFrame();
 	private Thread thread = new Thread(this);
 	private JLabel end = new JLabel();
-	private Snake S1 = new Snake();
+	private GameOver gameoverpanel = new GameOver();
+
+	//private Snake S1 = new Snake();
+
+	 private KittySnake S1 = new KittySnake();
+
+	 //private StarSnake S1 = new StarSnake();
+
 	private Apple A1 = new Apple();
 	private int Xspeed = 10, Yspeed = 0, i;
 	private boolean isRunning = true;
 	private LinkedList<Point> Pontos = new LinkedList<Point>();
 	private Point lastp = new Point();
-	private ImageIcon img = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\GAMEOVER.png");
-
+//	private ImageIcon img = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\GAMEOVER.png");
+	private LinkedList<Point> wall = new LinkedList<Point>();
+	private Point aux = new Point();
 	private BombApple bomba = new BombApple();
 	private BigApple big = new BigApple();
 	private DecreaseApple Decrease = new DecreaseApple();
@@ -43,10 +51,11 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener {
 		add(bomba);// -------------
 		add(big);
 		add(Decrease);
-		
-		Pontos.addLast(new Point(20, 30));
-		Pontos.addLast(new Point(10, 30));
-		Pontos.addLast(new Point(0, 30));
+		display.add(gameoverpanel);
+
+		//Pontos.add(new Point(20, 30));
+		//Pontos.add(new Point(10, 30));
+		//Pontos.add(new Point(0, 30));
 		thread.start();
 
 	}
@@ -67,7 +76,9 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener {
 		end.setLocation(0, 0);
 		end.setLayout(null);
 		end.setVisible(false);
-		end.setIcon(img);
+		// end.setIcon(img);
+		barrier();
+		display.pack();
 
 	}
 
@@ -115,11 +126,16 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener {
 	}
 
 	@Override
+
 	public void run() {
+		Pontos.add(new Point(20, 30));
+		Pontos.add(new Point(10, 30));
+		Pontos.add(new Point(0, 30));
 
 		while (isRunning) {
+
 			lastp.setLocation(S1.getLocation());
-			isRunning = S1.MoveAndCheck(S1, Xspeed, Yspeed, Pontos); // define as proximas cords da cobra
+			isRunning = S1.MoveAndCheck(S1, Xspeed, Yspeed, Pontos, wall); // define as proximas cords da cobra
 
 			if (!isRunning) {
 				break;
@@ -129,7 +145,7 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener {
 				break;
 			}
 			spawner.generateSpecial();// -------------
-			bomba.collision(S1);
+			//bomba.collision(S1);
 			big.collision(S1, Pontos);
 			Decrease.collision(S1, Pontos);
 			S1.AppleCollision(S1, A1, Pontos);
@@ -139,26 +155,47 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+
 			}
 		}
-	//	endscreen();
+
+		endscreen();
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Pontos.addFirst(Pontos.removeLast());
+		
+		try{
+		//System.out.println("Tamanho da lista: "+Pontos.size());
+		aux = Pontos.removeLast();
+		Pontos.addFirst(aux);
 		Pontos.get(0).setLocation(lastp);
+		}catch(NoSuchElementException e){
+			System.out.println("POKEBOLAAAAAAAA VAAAAAAAAAAAAAAAAAAAAAAAAAIII");
+		}
 		for (i = 0; i < Pontos.size(); i++) {
 			g.fillOval(Pontos.get(i).x, Pontos.get(i).y, 10, 10);
 
 		}
+		g.fillRect(70, 120, 10, 100);
+		g.fillRect(210, 40, 10, 100);
 
 	}
 
 	public void endscreen() {
 		setVisible(false);
-		end.setVisible(true);
+		gameoverpanel.setVisible(true);
+
+	}
+
+	public void barrier() {
+		for (int i = 0; i < 10; i++) {
+			wall.add(new Point(70, 120 + i * 10));
+		}
+		for (int i = 0; i < 10; i++) {
+			wall.add(new Point(210, 40 + i * 10));
+		}
 	}
 
 }
