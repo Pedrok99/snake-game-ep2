@@ -33,6 +33,6 @@ Caso as snakes colidam com a parede, serão levadas ao lado oposto do mapa.Snake
 
 ## Pontos
 
-Os pontos são atualizados em tempo real e mostrados quando o jogador perder.
+Os pontos são atualizados em tempo real e mostrados durante o jogo e quando o jogador perder.
 
 
