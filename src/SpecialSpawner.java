@@ -6,7 +6,7 @@ public class SpecialSpawner {
 	private BombApple bomb;
 	private BigApple Big;
 	private DecreaseApple decrease;
-	private int i=0, livingtime=0;
+	protected int i=0, livingtime=0;
 	private Random aux = new Random();
 	private Point pos =  new Point(-10, -10);
 	private boolean spawned=false;
@@ -24,15 +24,12 @@ public class SpecialSpawner {
 			spawned=true;
 			switch(aux.nextInt(3)) {
 			case 0:
-				System.out.println("BombFruit");
 				bomb.generateApple();
 			break;
 			case 1:
-				System.out.println("Big Fruit");
 				Big.generateApple();
 			break;
 			case 2:
-				System.out.println("DecreaseFruit");
 				decrease.generateApple();
 				break;
 			}		
