@@ -2,7 +2,7 @@ import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class BombApple extends Apple {
-	private ImageIcon appleicon = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\C_BODY.png");
+	private ImageIcon appleicon = new ImageIcon("./images/bomb.png");
 	
 	
 	public BombApple() {

@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 @SuppressWarnings("serial")
 public class DecreaseApple extends Apple {
-	private ImageIcon appleicon = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\T_DOWN.png");
+	private ImageIcon appleicon = new ImageIcon("./images/dec.png");
 	
 	
 	public DecreaseApple() {

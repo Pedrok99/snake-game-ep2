@@ -1,6 +1,4 @@
 import java.awt.Dimension;
-import java.awt.Point;
-import java.util.LinkedList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -12,7 +10,7 @@ public class Apple extends JLabel {
 	private int x, y;
 	private Random applePosx = new Random();
 	private Random applePosy = new Random();
-	private ImageIcon appleicon = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\APPLE.png");
+	private ImageIcon appleicon = new ImageIcon("./images/APPLE.png");
 	private boolean validplace = true;
 
 	public Apple() {
@@ -22,15 +20,6 @@ public class Apple extends JLabel {
 		generateApple();
 	}
 
-	/*
-	 * public void checkApple(Apple a, LinkedList<Point> pontos) {
-	 * 
-	 * for (int i = 0; i < pontos.size(); i++) { if (pontos.get(i).getX() ==
-	 * a.getX() && pontos.get(i).getY() == a.getY()) { generateApple(); i = 0; } }
-	 * for (int i = 0; i < pontos.size(); i++) { if (pontos.get(i).getX() ==
-	 * a.getX() && pontos.get(i).getY() == a.getY()) { generateApple(); i = 0; } }
-	 * setLocation(x, y); }
-	 */
 	public void generateApple() {
 		
 		do {
