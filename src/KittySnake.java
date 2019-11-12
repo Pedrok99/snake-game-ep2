@@ -1,14 +1,16 @@
 import java.awt.Point;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
+
 @SuppressWarnings("serial")
 public class KittySnake extends Snake{
 	private int x=30, y=30;
-	protected int score = 0;
-	protected boolean doublescore=false;
+	
 	
 	public KittySnake() {
 		super();
+		setIcon(new ImageIcon("./images/kittyh.png"));
 	}
 	
 	public boolean MoveAndCheck(Snake s, int VX, int VY, LinkedList<Point> pontos, LinkedList<Point> wall) {

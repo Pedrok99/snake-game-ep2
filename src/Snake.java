@@ -9,9 +9,10 @@ public class Snake extends JLabel {
 
 	private int x = 30, y = 30, larg = 10, alt = 10;
 	protected int score = 0;
-	protected boolean doublescore=false;
+	protected boolean Ds=false;
+	
 
-	ImageIcon head = new ImageIcon("C:\\Users\\Pichau\\Desktop\\Triangulo\\SQHead.png");
+	ImageIcon head = new ImageIcon("./images/SQHead.png");
 
 	public Snake() {
 		setBounds(x, y, larg, alt);
@@ -64,8 +65,12 @@ public class Snake extends JLabel {
 			pontos.addLast(new Point(pontos.get(pontos.size() - 1)));
 			a.generateApple();
 			score++;
-			System.out.println("Score = " + score);
-
 		}
+	}
+	public boolean getds () {
+		return this.Ds;
+	}
+	public void setds (boolean d) {
+		this.Ds = d;
 	}
 }
