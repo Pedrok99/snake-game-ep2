@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -205,7 +206,7 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener, Acti
 		}
 		for (i = 0; i < Pontos.size(); i++) {
 			g.fillOval(Pontos.get(i).x, Pontos.get(i).y, 10, 10);
-
+			Toolkit.getDefaultToolkit().sync();
 		}
 		g.fillRect(70, 120, 10, 100);
 		g.fillRect(210, 40, 10, 100);
