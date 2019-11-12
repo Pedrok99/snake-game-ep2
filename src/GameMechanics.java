@@ -50,7 +50,7 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener, Acti
 		ok.setVisible(true);
 		ok.addActionListener(this);
 		ok.setBackground(Color.DARK_GRAY);
-		ok.setFont(ok.getFont().deriveFont(16.0f));
+
 		ok.setForeground(Color.ORANGE);
 		ok.setFocusPainted(false);
 		ok.setBorderPainted(false);
@@ -187,7 +187,7 @@ public class GameMechanics extends JPanel implements Runnable, KeyListener, Acti
 		setVisible(false);
 		scoreLabel.setLocation(115, 130);
 		scoreLabel.setSize(80, 15);
-		scoreLabel.setFont(scoreLabel.getFont().deriveFont(16.0f));
+		
 		gameoverpanel.add(scoreLabel);
 		
 	}

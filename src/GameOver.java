@@ -18,7 +18,7 @@ public class GameOver extends JPanel {
 		go.setText("GameOver!!!");
 		go.setForeground(Color.RED);
 		setBackground(Color.DARK_GRAY);
-		go.setFont(go.getFont().deriveFont(18.0f));
+	//	go.setFont(go.getFont().deriveFont(18.0f));
 		go.setHorizontalAlignment(JLabel.CENTER);
 		go.setSize(180, 90);
 		go.setLocation(60, 30);

@@ -37,7 +37,7 @@ public class GameController extends JFrame implements ActionListener, Runnable {
 		jb1.setVisible(true);
 		jb1.addActionListener(this);
 		jb1.setBackground(Color.DARK_GRAY);
-		jb1.setFont(jb1.getFont().deriveFont(16.0f));
+	//	jb1.setFont(jb1.getFont().deriveFont(16.0f));
 		jb1.setForeground(Color.MAGENTA);
 		jb1.setFocusPainted(false);
 		jb1.setBorderPainted(false);
@@ -47,7 +47,7 @@ public class GameController extends JFrame implements ActionListener, Runnable {
 		jb2.setVisible(true);
 		jb2.addActionListener(this);
 		jb2.setBackground(Color.DARK_GRAY);
-		jb2.setFont(jb2.getFont().deriveFont(16.0f));
+	// jb2.setFont(jb2.getFont().deriveFont(16.0f));
 		jb2.setForeground(Color.green);
 		jb2.setFocusPainted(false);
 		jb2.setBorderPainted(false);
@@ -57,14 +57,14 @@ public class GameController extends JFrame implements ActionListener, Runnable {
 		jb3.setVisible(true);
 		jb3.addActionListener(this);
 		jb3.setBackground(Color.DARK_GRAY);
-		jb3.setFont(jb3.getFont().deriveFont(16.0f));
+	//	jb3.setFont(jb3.getFont().deriveFont(16.0f));
 		jb3.setForeground(Color.ORANGE);
 		jb3.setFocusPainted(false);
 		jb3.setBorderPainted(false);
 		add(jb3);
 		
 		titulo.setSize(new Dimension(230, 35));
-		titulo.setFont(titulo.getFont().deriveFont(16.0f));
+	//	titulo.setFont(titulo.getFont().deriveFont(16.0f));
 		titulo.setLocation(95, 10);
 		titulo.setText("SNAKEGAME");
 		titulo.setForeground(Color.pink);
@@ -72,18 +72,18 @@ public class GameController extends JFrame implements ActionListener, Runnable {
 		
 		classic.setSize(new Dimension(150, 30));
 		classic.setLocation(110, 80);
-		classic.setText(" - Nenhum Efeito Especial.");
+		classic.setText(" -Nenhum Efeito Especial.");
 		classic.setForeground(Color.white);
 		add(classic);
 		kitty.setSize(new Dimension(150, 30));
 		kitty.setLocation(110, 140);
-		kitty.setText(" - Atravessa Obstaculos.");
+		kitty.setText(" -Atravessa Obstaculos.");
 		kitty.setForeground(Color.white);
 		add(kitty);
 		
 		star.setSize(new Dimension(150, 30));
 		star.setLocation(110, 200);
-		star.setText(" - Recebe 2x Mais Pontos.");
+		star.setText(" -Recebe 2x Mais Pontos.");
 		star.setForeground(Color.white);
 		add(star);
 	
